@@ -6,6 +6,12 @@
 from os.path import split
 import pandas as pd
 import datetime
+import string
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+import nltk
+from nltk.stem import WordNetLemmatizer
+
 
 pd.set_option('display.width', 200)
 
@@ -46,6 +52,35 @@ def clean_data(data):
              7: '1/trimestre', 8: 'Less', 9: 'Never'}
     data.loc[:, 'Frequency'] = data['Frequency'].map(drows)
     return data
+
+
+def removePunctuation(text):
+
+    for punctuation in string.punctuation:
+        text = text.replace(punctuation, '')
+    return text
+
+
+def lowerCase(text):
+    text = text.lower()
+    return text
+
+
+def removeNum(text):
+    text = ''.join(word for word in text if not word.isdigit())
+    return text
+
+
+def removeStopWords(text):
+    stop_words = set(stopwords.words('english'))
+    word_tokens = word_tokenize(text)
+    return [word for word in word_tokens if not word in stop_words]
+
+
+def lemmatizeText(text):
+    lemmatizer = WordNetLemmatizer()
+    lemmatized = [lemmatizer.lemmatize(word) for word in text]
+    return ' '.join(lemmatized)
 
 
 if __name__ == '__main__':
