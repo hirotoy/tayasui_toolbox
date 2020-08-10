@@ -1,0 +1,3 @@
+graft tayasui_toolbox
+global-exclude *.py[cod] __pycache__ *.so *.ipynb
+recursive-exclude  tayasui_toolbox/jupy *
