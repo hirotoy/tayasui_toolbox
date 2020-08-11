@@ -1,1 +1,1 @@
-web: pip install . -U && tayasui_toolbox-run
+web: pip install . -U && tayasui-toolbox-run
